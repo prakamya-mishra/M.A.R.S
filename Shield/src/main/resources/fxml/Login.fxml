@@ -10,7 +10,7 @@
 <VBox alignment="CENTER" spacing="25" id="VBoxLogin" prefHeight="200" prefWidth="320" xmlns:fx="http://javafx.com/fxml" fx:controller="io.ragnarok.shield.FXMLController">
     <children>
         <TextField fx:id="usernameFieldL" promptText="Username" maxWidth="200"/>
-        <PasswordField fx:id="passwordFieldL" promptText="Password" maxWidth="200"/>
-        <Button text="Login" fx:id="loginBtn" />
+        <PasswordField fx:id="passwordFieldL" promptText="Password" maxWidth="200" onKeyPressed="#handleLoginEnter"/>
+        <Button text="Login" onAction="#handleLoginAction" fx:id="loginBtn" />
     </children>
 </VBox>
