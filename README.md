@@ -8,6 +8,6 @@ __Project Members__
 [Prakamya Mishra](https://github.com/prakamya-mishra)  
 [Pranav Mathur](https://github.com/pmathur98)  
 [Rohan Mittal](https://github.com/rohanmittal73)   
-[Vimanyu Devgan]()  
+[Vimanyu Devgan](https://github.com/vimanyu23)  
 
 *An undergrad course project for Java(CSD207).* 
