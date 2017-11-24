@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox alignment="CENTER" spacing="20" id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" fx:controller="io.ragnarok.shield.FXMLController">
+    <children>
+        <TextField fx:id="usernameFieldS" promptText="Username" maxWidth="200" />
+        <PasswordField fx:id="passwordFieldS" promptText="Password" maxWidth="200"/>
+        <PasswordField fx:id="confirmPasswordFieldS" promptText="Confirm Password" maxWidth="200"/>
+        <Button text="Sign Up"  fx:id="signUpBtn"/>
+    </children>
+</VBox>
