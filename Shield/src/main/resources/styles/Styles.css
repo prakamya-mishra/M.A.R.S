@@ -1,3 +1,66 @@
 .button {
     -fx-font-weight: bold;
 }
+#background{
+    -fx-background: #f6f6f6;
+}
+
+.list-view{
+    -fx-orientation: horizontal;
+    -fx-background-color: transparent;
+    -fx-padding: 0 0 0 20;
+}
+/*Removes scrollbar from list view*/
+.list-view .scroll-bar:horizontal .thumb{
+    -fx-opacity: 0;
+}
+
+.separator{
+    -fx-padding: 0 20 0 20;
+}
+
+#left-pane{
+    -fx-background-color: red;
+}
+/*Remove borders from scroll pane*/
+.scroll-pane{
+    -fx-box-border: transparent;
+}
+
+/*Removes scrollbar background*/
+ .scroll-bar:horizontal,
+ .scroll-bar:vertical{
+    -fx-background-color: transparent;
+}
+
+/*Removes scrollbar arrows*/
+ .scroll-bar .increment-arrow,
+ .scroll-bar .decrement-arrow{
+    -fx-shape:" ";
+    -fx-padding: 0;
+}
+
+/* The main scrollbar **thumb** CSS class which we drag every time (movable) */
+ .scroll-bar:horizontal .thumb,
+ .scroll-bar:vertical .thumb {
+    -fx-background-color:derive(black,90%);
+	-fx-background-insets: 2, 0, 0;
+        -fx-border-radius: 2em;
+}
+
+/* The increment and decrement button CSS class of scrollbar */
+ .scroll-bar:horizontal .increment-button ,
+ .scroll-bar:horizontal .decrement-button {
+    -fx-background-color:transparent;
+	-fx-background-radius: 0em;
+	-fx-padding:0 0 10 0;
+}
+
+/* The main scrollbar **track** CSS class  */
+ .scroll-bar:horizontal .track,
+ .scroll-bar:vertical .track{
+	-fx-background-color:transparent;
+	-fx-border-color:transparent;
+	-fx-background-radius: 0em;
+	-fx-border-radius:2em;
+}

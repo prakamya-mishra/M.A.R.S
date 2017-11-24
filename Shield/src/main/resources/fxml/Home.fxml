@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.collections.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<BorderPane fx:id="background"  minHeight="720.0" minWidth="900.0" xmlns:fx="http://javafx.com/fxml/1" fx:controller="io.ragnarok.shield.HomeController">
+<center>
+    <ScrollPane id="scroll-wrapper" fitToWidth="true">
+    <content>
+        <VBox alignment="CENTER" spacing="15">
+        <children>   
+            <Label text="Recommended"/>
+            <ListView prefHeight="200">
+                <items>
+                    <FXCollections fx:factory="observableArrayList">
+                            <String fx:value="One" />
+                             <String fx:value="One" /> 
+                             <String fx:value="One" />
+                              <String fx:value="One" />
+                               <String fx:value="One" />
+                                <String fx:value="One" />
+                                 <String fx:value="One" />
+                                  <String fx:value="One" />
+                                   <String fx:value="One" />
+                                   <String fx:value="One" />
+                             <String fx:value="One" /> 
+                             <String fx:value="One" />
+                              <String fx:value="One" />
+                               <String fx:value="One" />
+                                <String fx:value="One" />
+                                 <String fx:value="One" />
+                                  <String fx:value="One" />
+                                   <String fx:value="One" />
+                                   <String fx:value="One" />
+                             <String fx:value="One" /> 
+                             <String fx:value="One" />
+                              <String fx:value="One" />
+                               <String fx:value="One" />
+                                <String fx:value="One" />
+                                 <String fx:value="One" />
+                                  <String fx:value="One" />
+                                   <String fx:value="One" />
+                    </FXCollections>
+                </items> 
+            </ListView>
+            <Separator /> 
+            <Label text="Your favourites"/>    
+            <ListView prefHeight="200"/>
+            <Separator /> 
+            <Label text="Top Hits"/>
+            <ListView prefHeight="200"/>  
+        </children>    
+        </VBox>
+    </content>
+    </ScrollPane>
+</center>
+<left>
+    <BorderPane id="left-pane" fx:id="paneLeft" prefWidth="650"/>
+</left>
+</BorderPane>
