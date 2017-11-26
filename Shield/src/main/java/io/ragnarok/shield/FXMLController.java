@@ -5,9 +5,11 @@ import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.stage.Stage;
 
 public class FXMLController implements Initializable {
     
@@ -46,15 +48,10 @@ public class FXMLController implements Initializable {
         System.out.println(usernameFieldL.getText()+" "+passwordFieldL.getText());
     }
     
-    //Launcher Screen
     @FXML
-    private void handleLoginNavAction(ActionEvent event) {
-        System.out.println("Move to Login");
-    }
-    
-    @FXML
-    private void handleSignUpNavAction(ActionEvent event) {
-        System.out.println("move to Sign Up");
+    private void closeStage(ActionEvent event){
+      Stage stage = (Stage)((Node) event.getSource()).getScene().getWindow();
+      stage.close();
     }
     
     @Override

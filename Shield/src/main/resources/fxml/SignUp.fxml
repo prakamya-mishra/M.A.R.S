@@ -8,6 +8,9 @@
 
 <VBox alignment="CENTER" spacing="20" id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" fx:controller="io.ragnarok.shield.FXMLController">
     <children>
+        <HBox alignment="CENTER_RIGHT">
+            <Button fx:id="closeButtonS" text="X" onAction="#closeStage"/>
+        </HBox>
         <TextField fx:id="usernameFieldS" promptText="Username" maxWidth="200" />
         <PasswordField fx:id="passwordFieldS" promptText="Password" maxWidth="200"/>
         <PasswordField fx:id="confirmPasswordFieldS" promptText="Confirm Password" maxWidth="200" onKeyPressed="#handleSignUpEnter"/>

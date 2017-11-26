@@ -3,12 +3,17 @@
 <?import java.lang.*?>
 <?import java.util.*?>
 <?import javafx.scene.*?>
+<?import javafx.scene.image.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<HBox alignment="CENTER" spacing="25" id="AnchorPane" prefHeight="200" prefWidth="320" xmlns:fx="http://javafx.com/fxml" fx:controller="io.ragnarok.shield.FXMLController">
+<VBox alignment="CENTER" spacing="30" id="launcher" prefHeight="200" prefWidth="320" xmlns:fx="http://javafx.com/fxml" fx:controller="io.ragnarok.shield.FXMLController">
     <children>
-        <Button text="Login"  fx:id="btnLogin" />
-        <Button text="Sign Up" fx:id="btnSignUp" />
+        <ImageView preserveRatio="true">
+            <image>
+                <Image url="/image/logo.png"/>
+            </image>
+        </ImageView>
+        <ProgressIndicator />
     </children>
-</HBox>
+</VBox>

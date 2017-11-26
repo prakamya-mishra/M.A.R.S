@@ -1,6 +1,18 @@
 .button {
     -fx-font-weight: bold;
 }
+
+#launcher{
+    -fx-background-color: red;
+}
+.progress-indicator{
+    -fx-progress-color: white;
+}
+
+.label{
+    -fx-padding: 0 0 0 20;
+}
+
 #background{
     -fx-background: #f6f6f6;
 }
@@ -21,6 +33,7 @@
 
 #left-pane{
     -fx-background-color: red;
+    -fx-padding: 10 5 20 5;
 }
 /*Remove borders from scroll pane*/
 .scroll-pane{
@@ -63,4 +76,18 @@
 	-fx-border-color:transparent;
 	-fx-background-radius: 0em;
 	-fx-border-radius:2em;
+}
+
+.banner{
+    -fx-font-size: 25;
+}
+
+.header{
+    -fx-font-size: 35;
+}
+
+.user-header{
+    -fx-font-weight: bold;
+    -fx-font-size: 30;
+    -fx-text-fill: white;
 }
