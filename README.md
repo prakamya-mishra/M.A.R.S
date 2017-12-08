@@ -1,7 +1,7 @@
 # SHIELD
 A platform to connect music lovers across the globe!! 
 
-This is a cool Java app to help you realise your music preferences and share it with the world. We use * _fancy concept coming_ * called machine learning to help you discover your music tastes.
+This is a cool Java app to help you realise your music preferences and share it with the world. We use * _fancy concept coming_ * machine learning to help you discover your music tastes.
 
 __Project Members__  
 [Arpan Jain](https://github.com/arpanjain97)  
