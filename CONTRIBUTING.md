@@ -1,5 +1,5 @@
-# Contributing to Xcento
-We believe in making code comprehensible and clean. Most important ! we like our code to be uniform and properly documented. Thus, we came up with some things that need to be remembered while writing code for Xcento.
+# Contributing to SHIELD
+We believe in making code comprehensible and clean. Most important ! we like our code to be uniform and properly documented. Thus, we came up with some things that need to be remembered while writing code for SHIELD.
 
 ## Documentation
 1. Add a doc string(comment) after every new function or class declaration. The doc string should be concise and convey the usage of the class
