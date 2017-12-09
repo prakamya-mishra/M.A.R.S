@@ -106,6 +106,21 @@ public class Functions {
             return false;
     }
 
+    public static void signUp(String username,String password)
+    {
+        try{
+            FileWriter writer = new FileWriter("User_db.csv",true);
+            String line=username+","+password+","+"0"+","+""+","+""+","+""+","+""+","+""+","+""+","+""+","+""+","+""+","+""+","+""+"\n";
+            writer.append(line);
+            writer.flush();
+            writer.close();
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+    }
+
+
+
 
 }
 
