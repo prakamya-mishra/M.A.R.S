@@ -22,7 +22,7 @@ public class Logistic {
     private int ITERATIONS = 3000;
 
     public Logistic(int n) {
-        this.rate = 0.0001;
+        this.rate = 0.3;
         weights = new double[n];
     }
 
@@ -34,20 +34,19 @@ public class Logistic {
         for (int n=0; n<ITERATIONS; n++) {
             double lik = 0.0;
             for (int i=0; i<instances.size(); i++) {
-                int[] x = instances.get(i).x;
+                float[] x = instances.get(i).x;
                 double predicted = classify(x);
-                int label = instances.get(i).label;
+                float label = instances.get(i).label;
                 for (int j=0; j<weights.length; j++) {
-                    weights[j] = weights[j] + rate * (label - predicted) * x[j];
+                    weights[j] = weights[j] + rate * (label - predicted) * predicted * (1 - predicted) * x[j];
                 }
-                // not necessary for learning
-                lik += label * Math.log(classify(x)) + (1-label) * Math.log(1- classify(x));
+
             }
             System.out.println("iteration: " + n + " " + Arrays.toString(weights) + " mle: " + lik);
         }
     }
 
-    private double classify(int[] x) {
+    private double classify(float[] x) {
         double logit = .0;
         for (int i=0; i<weights.length;i++)  {
             logit += weights[i] * x[i];
@@ -56,36 +55,36 @@ public class Logistic {
     }
 
     public static class Instance {
-        public int label;
-        public int[] x;
+        public float label;
+        public float[] x;
 
-        public Instance(int label, int[] x) {
+        public Instance(float label, float[] x) {
             this.label = label;
             this.x = x;
         }
     }
 
-    public static List<Instance> readDataSet(String file) throws FileNotFoundException {
+    public static List<Instance> readDataSet(String file, String user_name) throws FileNotFoundException {
         List<Instance> dataset = new ArrayList<Instance>();
         Scanner scanner = null;
         try {
             scanner = new Scanner(new File(file));
             while(scanner.hasNextLine()) {
                 String line = scanner.nextLine();
-                if (line.startsWith("#")) {
-                    continue;
-                }
-                String[] columns = line.split("\\s+");
 
-                // skip first column and last column is the label
-                int i = 1;
-                int[] data = new int[columns.length-2];
-                for (i=1; i<columns.length-1; i++) {
-                    data[i-1] = Integer.parseInt(columns[i]);
+                String[] columns = line.split(",");
+                if(columns[0].equals(user_name)) {
+                    // skip first column and last column is the label
+
+                    float[] data = new float[columns.length-3];
+                    for (int i=3; i<columns.length-1; i++) {
+                        int k=i-3;
+                        data[k] = Float.parseFloat(columns[i]);
+                    }
+                    float label = Float.parseFloat(columns[columns.length-1]);
+                    Instance instance = new Instance(label, data);
+                    dataset.add(instance);
                 }
-                int label = Integer.parseInt(columns[i]);
-                Instance instance = new Instance(label, data);
-                dataset.add(instance);
             }
         } finally {
             if (scanner != null)
@@ -96,8 +95,8 @@ public class Logistic {
 
     /*
     public static void main(String... args) throws FileNotFoundException {
-        List<Instance> instances = readDataSet("dataset.txt");
-        Logistic logistic = new Logistic(5);
+        List<Instance> instances = readDataSet("User_db.csv",user_name);
+        Logistic logistic = new Logistic(8);
         logistic.train(instances);
         int[] x = {2, 1, 1, 0, 1};
         System.out.println("prob(1|x) = " + logistic.classify(x));
