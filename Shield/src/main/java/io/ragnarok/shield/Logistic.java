@@ -46,12 +46,16 @@ public class Logistic {
         }
     }
 
-    private double classify(float[] x) {
+    public int classify(float[] x) {
         double logit = .0;
         for (int i=0; i<weights.length;i++)  {
             logit += weights[i] * x[i];
         }
-        return sigmoid(logit);
+        if (sigmoid(logit)>0.5){
+            return 1;
+        }else {
+            return 1;
+        }
     }
 
     public static class Instance {
@@ -76,9 +80,9 @@ public class Logistic {
                 if(columns[0].equals(user_name)) {
                     // skip first column and last column is the label
 
-                    float[] data = new float[columns.length-3];
-                    for (int i=3; i<columns.length-1; i++) {
-                        int k=i-3;
+                    float[] data = new float[columns.length-6];
+                    for (int i=5; i<columns.length-1; i++) {
+                        int k=i-5;
                         data[k] = Float.parseFloat(columns[i]);
                     }
                     float label = Float.parseFloat(columns[columns.length-1]);
@@ -90,6 +94,7 @@ public class Logistic {
             if (scanner != null)
                 scanner.close();
         }
+        dataset.remove(0);
         return dataset;
     }
 

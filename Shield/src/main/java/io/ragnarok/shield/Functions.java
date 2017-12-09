@@ -205,5 +205,49 @@ public class Functions {
 
 
     }
+
+    public static void recommendRefresh(String[] songInfo) {
+        try {
+
+            Scanner scannerUser = new Scanner(new File("User_db.csv"));
+            Scanner scannerSongs = new Scanner(new File("Songs_db.csv"));
+            ArrayList<String> userDbLines = new ArrayList<String>();
+            userDbLines.add(scannerUser.nextLine());
+            String loggedUserName = null,loggedUserPwd = null;
+            String newSong;
+            int logged = 0;
+            while (scannerUser.hasNextLine()) {
+                String line = scannerUser.nextLine();
+                String[] columns = line.split(",");
+                int loggedIn = Integer.parseInt(columns[2]);
+                if(loggedIn == 1) {
+                    loggedUserName = columns[0];
+                    loggedUserPwd = columns[1];
+                    logged = loggedIn;
+                    break;
+                }
+            }
+            List<Logistic.Instance> instances = Logistic.readDataSet("User_db.csv",loggedUserName);
+            Logistic logistic = new Logistic(8);
+            logistic.train(instances);
+            File Recommended_db = new File("Recommended_db");
+            FileWriter Recommended_db_writer = new FileWriter(Recommended_db, true);
+            Recommended_db_writer.append("user_name,user_pwd,logged_in,title,artist_name,artist.hottness,duration,familiarity,key,loudness,mode,tempo,time_signature,label");
+            while (scannerSongs.hasNextLine()) {
+                String line = scannerSongs.nextLine();
+                String[] columns = line.split(",");
+                float[] x = {(float)Float.parseFloat(columns[2]),(float)Float.parseFloat(columns[3]),(float)Float.parseFloat(columns[4]),(float)Float.parseFloat(columns[5]),(float)Float.parseFloat(columns[6]),(float)Float.parseFloat(columns[7]),(float)Float.parseFloat(columns[8]),(float)Float.parseFloat(columns[9])};
+                Recommended_db_writer.append("\n"+loggedUserName+","+loggedUserPwd+","+logged+","+(float)Float.parseFloat(columns[2])+","+(float)Float.parseFloat(columns[3])+","+(float)Float.parseFloat(columns[4])+","+(float)Float.parseFloat(columns[5])+","+(float)Float.parseFloat(columns[6])+","+(float)Float.parseFloat(columns[7])+","+(float)Float.parseFloat(columns[8])+","+(float)Float.parseFloat(columns[9])+","+logistic.classify(x));
+            }
+            Recommended_db_writer.close();
+            Recommended_db_writer.flush();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
+    }
 }
 
