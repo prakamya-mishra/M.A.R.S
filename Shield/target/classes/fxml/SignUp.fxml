@@ -13,7 +13,7 @@
         </HBox>
         <TextField fx:id="usernameFieldS" promptText="Username" maxWidth="200" />
         <PasswordField fx:id="passwordFieldS" promptText="Password" maxWidth="200"/>
-        <PasswordField fx:id="confirmPasswordFieldS" promptText="Confirm Password" maxWidth="200" onKeyPressed="#handleSignUpEnter"/>
-        <Button text="Sign Up" onAction="#handleSignUpAction" fx:id="signUpBtn"/>
+        <PasswordField fx:id="confirmPasswordFieldS" promptText="Confirm Password" maxWidth="200" onKeyPressed="#handleSignUp"/>
+        <Button text="Sign Up" onAction="#handleSignUp" fx:id="signUpBtn"/>
     </children>
 </VBox>

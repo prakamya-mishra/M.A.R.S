@@ -18,110 +18,14 @@
             <Label text="Home" prefHeight="50" styleClass="header"/>
             <Label text="Songs" styleClass="banner"/>
             <Button text="Refresh" onAction="#refreshSongs"/>
-            <ListView prefHeight="200">
-                <items>
-                    <FXCollections fx:factory="observableArrayList">
-                            <String fx:value="One" />
-                            <String fx:value="One" /> 
-                            <String fx:value="One" />
-                            <String fx:value="One" />
-                            <String fx:value="One" />
-                            <String fx:value="One" />
-                            <String fx:value="One" />
-                            <String fx:value="One" />
-                            <String fx:value="One" />
-                            <String fx:value="One" />
-                            <String fx:value="One" /> 
-                            <String fx:value="One" />
-                            <String fx:value="One" />
-                            <String fx:value="One" />
-                            <String fx:value="One" />
-                            <String fx:value="One" />
-                            <String fx:value="One" />
-                            <String fx:value="One" />
-                            <String fx:value="One" />
-                            <String fx:value="One" /> 
-                            <String fx:value="One" />
-                            <String fx:value="One" />
-                            <String fx:value="One" />
-                            <String fx:value="One" />
-                            <String fx:value="One" />
-                            <String fx:value="One" />
-                            <String fx:value="One" />
-                    </FXCollections>
-                </items> 
-            </ListView>
+            <ListView fx:id="songList" prefHeight="200"/>
             <Separator /> 
             <Label text="Recommended Songs" styleClass="banner"/>
             <Button text="Refresh" onAction="#refreshReco"/>
-            <ListView prefHeight="200">
-                <items>
-                    <FXCollections fx:factory="observableArrayList">
-                        <String fx:value="One" />
-                        <String fx:value="One" />
-                        <String fx:value="One" />
-                        <String fx:value="One" />
-                        <String fx:value="One" />
-                        <String fx:value="One" />
-                        <String fx:value="One" />
-                        <String fx:value="One" />
-                        <String fx:value="One" />
-                        <String fx:value="One" />
-                        <String fx:value="One" />
-                        <String fx:value="One" />
-                        <String fx:value="One" />
-                        <String fx:value="One" />
-                        <String fx:value="One" />
-                        <String fx:value="One" />
-                        <String fx:value="One" />
-                        <String fx:value="One" />
-                        <String fx:value="One" />
-                        <String fx:value="One" />
-                        <String fx:value="One" />
-                        <String fx:value="One" />
-                        <String fx:value="One" />
-                        <String fx:value="One" />
-                        <String fx:value="One" />
-                        <String fx:value="One" />
-                        <String fx:value="One" />
-                    </FXCollections>
-                </items>
-            </ListView>
+            <ListView fx:id="recoList" prefHeight="200"/>
             <Separator /> 
             <Label text="My Songs" styleClass="banner"/>
-            <ListView prefHeight="200">
-                <items>
-                    <FXCollections fx:factory="observableArrayList">
-                        <String fx:value="One" />
-                        <String fx:value="One" />
-                        <String fx:value="One" />
-                        <String fx:value="One" />
-                        <String fx:value="One" />
-                        <String fx:value="One" />
-                        <String fx:value="One" />
-                        <String fx:value="One" />
-                        <String fx:value="One" />
-                        <String fx:value="One" />
-                        <String fx:value="One" />
-                        <String fx:value="One" />
-                        <String fx:value="One" />
-                        <String fx:value="One" />
-                        <String fx:value="One" />
-                        <String fx:value="One" />
-                        <String fx:value="One" />
-                        <String fx:value="One" />
-                        <String fx:value="One" />
-                        <String fx:value="One" />
-                        <String fx:value="One" />
-                        <String fx:value="One" />
-                        <String fx:value="One" />
-                        <String fx:value="One" />
-                        <String fx:value="One" />
-                        <String fx:value="One" />
-                        <String fx:value="One" />
-                    </FXCollections>
-                </items>
-            </ListView>
+            <ListView fx:id="myList" prefHeight="200"/>
         </children>    
         </VBox>
     </content>
@@ -132,8 +36,8 @@
         <top >
             <VBox alignment="CENTER" spacing="20">
                 <WebView fx:id="ytPlayer" maxHeight="331" maxWidth="578"/>
-                <Label text="Title: Pink World" styleClass="songMeta"/>
-                <Label text="Artist: Planet P World" styleClass="songMeta"/>
+                <Label fx:id="titleText" text="Title: Pink World" styleClass="songMeta"/>
+                <Label fx:id="artistText" text="Artist: Planet P World" styleClass="songMeta"/>
             </VBox>
         </top>
         <bottom>    

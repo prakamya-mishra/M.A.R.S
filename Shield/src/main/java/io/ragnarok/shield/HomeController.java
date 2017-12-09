@@ -8,6 +8,8 @@ package io.ragnarok.shield;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -16,6 +18,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 import javafx.stage.Modality;
@@ -41,6 +44,8 @@ public class HomeController implements Initializable {
     Label user_label;
     @FXML
     WebView ytPlayer;
+    @FXML
+    private ListView songList;
 
     static WebEngine engine;
     private void toggleControls(){
@@ -99,6 +104,14 @@ public class HomeController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO get user logged status and render home screen accordingly
         engine = ytPlayer.getEngine();
-    }    
+        String[] data = {"Pink World","Planet P Project"};
+        ObservableList<String[]> dataobv = FXCollections.observableArrayList();
+        dataobv.add(data);
+        songList.setItems(dataobv);
+    }   
+    
+    
+    
+    
     
 }

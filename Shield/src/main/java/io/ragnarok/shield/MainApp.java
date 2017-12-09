@@ -1,5 +1,6 @@
 package io.ragnarok.shield;
 
+import javafx.animation.FadeTransition;
 import javafx.application.Application;
 import static javafx.application.Application.launch;
 import javafx.fxml.FXMLLoader;
@@ -7,6 +8,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
 
 public class MainApp extends Application {
@@ -14,7 +16,6 @@ public class MainApp extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("/fxml/Home.fxml"));
-        HomeController.show();
         
         Scene scene = new Scene(root,1366,768);
         scene.getStylesheets().add("/styles/Styles.css");
