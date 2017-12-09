@@ -66,8 +66,7 @@ public class HomeController implements Initializable {
     @FXML
     public static void show(){
         String url = Search.search();
-        System.out.println(url);
-        String content_Url = "<iframe width=\"560\" height=\"315\" src=\"http://www.youtube.com/embed/"+url+"\" frameborder=\"0\" allowfullscreen></iframe>";
+        String content_Url = "<iframe width=\"560\" height=\"315\" src=\"https://www.youtube-nocookie.com/embed/"+url+"?rel=0&amp;controls=0&amp;showinfo=0\" frameborder=\"0\" gesture=\"media\" allow=\"encrypted-media\" allowfullscreen></iframe>";
         engine.loadContent(content_Url);
     }
 

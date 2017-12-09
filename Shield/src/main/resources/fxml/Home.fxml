@@ -130,7 +130,11 @@
 <left>
     <BorderPane id="left-pane" fx:id="paneLeft" prefWidth="650">
         <top >
-            <WebView fx:id="ytPlayer"/>
+            <VBox alignment="CENTER" spacing="20">
+                <WebView fx:id="ytPlayer" maxHeight="331" maxWidth="578"/>
+                <Label text="Title: Pink World" styleClass="songMeta"/>
+                <Label text="Artist: Planet P World" styleClass="songMeta"/>
+            </VBox>
         </top>
         <bottom>    
         <VBox alignment="CENTER" spacing="25">

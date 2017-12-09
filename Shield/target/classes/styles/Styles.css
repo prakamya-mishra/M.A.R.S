@@ -92,3 +92,9 @@
     -fx-text-fill: white;
 }
 
+.songMeta{
+    -fx-font-size: 25;
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
+}
+
