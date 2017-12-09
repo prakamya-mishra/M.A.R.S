@@ -140,8 +140,8 @@ public class Functions {
             while (scannerSongs.hasNextLine()) {
                 String line = scannerSongs.nextLine();
                 String[] columns = line.split(",");
-                if(songInfo[0].equals(columns[3]) && songInfo[1].equals(columns[4])){
-                    newSong = loggedUserName + "," + loggedUserPwd + "," + logged + "," + columns[3] + "," + columns[4] + "," + columns[5] + "," + columns[6] + "," + columns[7] + "," + columns[8] + "," + columns[9] + "," + columns[10] + "," + columns[11] + "," + columns[12] + "," + 1;
+                if(songInfo[0].equals(columns[0]) && songInfo[1].equals(columns[1])){
+                    newSong = loggedUserName + "," + loggedUserPwd + "," + logged + "," + columns[0] + "," + columns[1] + "," + columns[2] + "," + columns[3] + "," + columns[4] + "," + columns[5] + "," + columns[6] + "," + columns[7] + "," + columns[8] + "," + columns[9] + "," + 1;
                     FileWriter writer = new FileWriter("User_db.csv", true);
                     writer.append("\n" + newSong);
                     writer.flush();
@@ -185,8 +185,8 @@ public class Functions {
             while (scannerSongs.hasNextLine()) {
                 String line = scannerSongs.nextLine();
                 String[] columns = line.split(",");
-                if(songInfo[0].equals(columns[3]) && songInfo[1].equals(columns[4])){
-                    newSong = loggedUserName + "," + loggedUserPwd + "," + logged + "," + columns[3] + "," + columns[4] + "," + columns[5] + "," + columns[6] + "," + columns[7] + "," + columns[8] + "," + columns[9] + "," + columns[10] + "," + columns[11] + "," + columns[12] + "," + 0;
+                if(songInfo[0].equals(columns[0]) && songInfo[1].equals(columns[1])){
+                    newSong = loggedUserName + "," + loggedUserPwd + "," + logged + "," + columns[0] + "," + columns[1] + "," + columns[2] + "," + columns[3] + "," + columns[4] + "," + columns[5] + "," + columns[6] + "," + columns[7] + "," + columns[8] + "," + columns[9] + "," + 0;
                     FileWriter writer = new FileWriter("User_db.csv", true);
                     writer.append("\n" + newSong);
                     writer.flush();
@@ -214,7 +214,6 @@ public class Functions {
             ArrayList<String> userDbLines = new ArrayList<String>();
             userDbLines.add(scannerUser.nextLine());
             String loggedUserName = null,loggedUserPwd = null;
-            String newSong;
             int logged = 0;
             while (scannerUser.hasNextLine()) {
                 String line = scannerUser.nextLine();
@@ -230,7 +229,7 @@ public class Functions {
             List<Logistic.Instance> instances = Logistic.readDataSet("User_db.csv",loggedUserName);
             Logistic logistic = new Logistic(8);
             logistic.train(instances);
-            File Recommended_db = new File("Recommended_db");
+            File Recommended_db = new File("Recommended_db.csv");
             FileWriter Recommended_db_writer = new FileWriter(Recommended_db, true);
             Recommended_db_writer.append("user_name,user_pwd,logged_in,title,artist_name,artist.hottness,duration,familiarity,key,loudness,mode,tempo,time_signature,label");
             while (scannerSongs.hasNextLine()) {
@@ -249,6 +248,50 @@ public class Functions {
 
 
     }
-    
+
+    public static void songAdd(String[] songInfo) {
+        try {
+
+            Scanner scannerUser = new Scanner(new File("User_db.csv"));
+            Scanner scannerSongs = new Scanner(new File("Songs_db.csv"));
+            ArrayList<String> userDbLines = new ArrayList<String>();
+            userDbLines.add(scannerUser.nextLine());
+            String loggedUserName = null,loggedUserPwd = null;
+            int logged = 0;
+            while (scannerUser.hasNextLine()) {
+                String line = scannerUser.nextLine();
+                String[] columns = line.split(",");
+                int loggedIn = Integer.parseInt(columns[2]);
+                if(loggedIn == 1) {
+                    loggedUserName = columns[0];
+                    loggedUserPwd = columns[1];
+                    logged = loggedIn;
+                    break;
+                }
+            }
+            File MySongs_db = new File("MySongs_db.csv");
+            FileWriter MySongs_db_writer = new FileWriter(MySongs_db, true);
+            MySongs_db_writer.append("user_name,user_pwd,logged_in,title,artist_name,artist.hottness,duration,familiarity,key,loudness,mode,tempo,time_signature,label");
+            String newSong = null;
+            while (scannerSongs.hasNextLine()) {
+                String line = scannerUser.nextLine();
+                String[] columns = line.split(",");
+                if(songInfo[0].equals(columns[0]) && songInfo[1].equals(columns[1])){
+                    newSong = loggedUserName + "," + loggedUserPwd + "," + logged + "," + columns[0] + "," + columns[1] + "," + columns[2] + "," + columns[3] + "," + columns[4] + "," + columns[5] + "," + columns[6] + "," + columns[7] + "," + columns[8] + "," + columns[9] + "," + columns[10];
+                    MySongs_db_writer.append("\n"+newSong);
+                    MySongs_db_writer.close();
+                    MySongs_db_writer.flush();
+                }
+            }
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
+    }
+
 }
 
