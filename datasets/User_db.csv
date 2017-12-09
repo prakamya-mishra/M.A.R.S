@@ -1,1 +1,1 @@
-user_name,user_pwd,title,artist_name,artist.hotttnesss,duration,familiarity,key,loudness,mode,tempo,time_signature,label
+user_name,user_pwd,logged_in,title,artist_name,artist.hottness,duration,familiarity,key,loudness,mode,tempo,time_signature,label
