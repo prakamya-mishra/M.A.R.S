@@ -8,6 +8,8 @@ package io.ragnarok.shield;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -49,9 +51,9 @@ public class HomeController implements Initializable {
     @FXML
     private ListView songList;
     @FXML
-    static Label titleText;
+    Label titleText;
     @FXML
-    static Label artistText;
+    Label artistText;
 
     static WebEngine engine;
     private void toggleControls(){
@@ -74,11 +76,11 @@ public class HomeController implements Initializable {
         this.toggleControls();
     }
 
-    @FXML
-    public static void show(String[] data){
-        titleText.setText(data[0]);
-        artistText.setText(data[1]);
-        String url = Search.search();
+    public void show(final String[] data){
+        String query = data[0]+" - "+data[1];
+        titleText.setText("Title: "+data[0]);
+        artistText.setText("Artist: "+data[1]);
+        String url = Search.search(query);
         String content_Url = "<iframe width=\"560\" height=\"315\" src=\"https://www.youtube-nocookie.com/embed/"+url+"?rel=0&amp;controls=0&amp;showinfo=0\" frameborder=\"0\" gesture=\"media\" allow=\"encrypted-media\" allowfullscreen></iframe>";
         engine.loadContent(content_Url);
     }
@@ -123,7 +125,16 @@ public class HomeController implements Initializable {
             return new CustomCell();
         }
     });
-    }   
+         songList.getSelectionModel().selectedItemProperty()
+        .addListener(new ChangeListener<String[]>() {
+            @Override
+          public void changed(ObservableValue<? extends String[]> observable,
+              String[] oldValue, String[] newValue) {
+                        show(newValue);
+          }
+        });
+    } 
+    
     
     
     

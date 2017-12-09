@@ -25,7 +25,7 @@ public class Search {
     private static YouTube youtube;
 
 
-    public static String search() {
+    public static String search(String query) {
         Properties properties = new Properties();
         try {
             InputStream in = Search.class.getResourceAsStream("/" + PROPERTIES_FILENAME);
@@ -44,7 +44,7 @@ public class Search {
                 }
             }).setApplicationName("searchYoutube").build();
 
-            String queryTerm = "Pink World - Planet P Project";
+            String queryTerm = query;
 
             // Define the API request for retrieving search results.
             YouTube.Search.List search = youtube.search().list("id,snippet");
