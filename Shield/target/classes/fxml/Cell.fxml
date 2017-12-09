@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.image.*?>
+
+<VBox fx:id="cell" prefWidth="150.0" xmlns:fx="http://javafx.com/fxml/1" alignment="center" fx:controller="io.ragnarok.shield.CellController">
+    <children>
+        <ImageView fx:id="thumb" preserveRatio="true" fitHeight="120" fitWidth="120" onMouseEntered="#hover" onMouseExited="#leave">
+            <image>
+                <Image url="/image/logo.png"/>
+            </image>
+        </ImageView>
+        <Label fx:id="titleText"/>
+        <Label fx:id="artistText"/>
+    </children>
+</VBox>
