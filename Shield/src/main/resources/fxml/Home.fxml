@@ -16,41 +16,43 @@
         <children>   
             <Label text="Home" prefHeight="50" styleClass="header"/>
             <Label text="Songs" styleClass="banner"/>
+            <Button text="Refresh" onAction="#refreshSongs"/>
             <ListView prefHeight="200">
                 <items>
                     <FXCollections fx:factory="observableArrayList">
                             <String fx:value="One" />
-                             <String fx:value="One" /> 
-                             <String fx:value="One" />
-                              <String fx:value="One" />
-                               <String fx:value="One" />
-                                <String fx:value="One" />
-                                 <String fx:value="One" />
-                                  <String fx:value="One" />
-                                   <String fx:value="One" />
-                                   <String fx:value="One" />
-                             <String fx:value="One" /> 
-                             <String fx:value="One" />
-                              <String fx:value="One" />
-                               <String fx:value="One" />
-                                <String fx:value="One" />
-                                 <String fx:value="One" />
-                                  <String fx:value="One" />
-                                   <String fx:value="One" />
-                                   <String fx:value="One" />
-                             <String fx:value="One" /> 
-                             <String fx:value="One" />
-                              <String fx:value="One" />
-                               <String fx:value="One" />
-                                <String fx:value="One" />
-                                 <String fx:value="One" />
-                                  <String fx:value="One" />
-                                   <String fx:value="One" />
+                            <String fx:value="One" /> 
+                            <String fx:value="One" />
+                            <String fx:value="One" />
+                            <String fx:value="One" />
+                            <String fx:value="One" />
+                            <String fx:value="One" />
+                            <String fx:value="One" />
+                            <String fx:value="One" />
+                            <String fx:value="One" />
+                            <String fx:value="One" /> 
+                            <String fx:value="One" />
+                            <String fx:value="One" />
+                            <String fx:value="One" />
+                            <String fx:value="One" />
+                            <String fx:value="One" />
+                            <String fx:value="One" />
+                            <String fx:value="One" />
+                            <String fx:value="One" />
+                            <String fx:value="One" /> 
+                            <String fx:value="One" />
+                            <String fx:value="One" />
+                            <String fx:value="One" />
+                            <String fx:value="One" />
+                            <String fx:value="One" />
+                            <String fx:value="One" />
+                            <String fx:value="One" />
                     </FXCollections>
                 </items> 
             </ListView>
             <Separator /> 
             <Label text="Recommended Songs" styleClass="banner"/>
+            <Button text="Refresh" onAction="#refreshReco"/>
             <ListView prefHeight="200">
                 <items>
                     <FXCollections fx:factory="observableArrayList">
