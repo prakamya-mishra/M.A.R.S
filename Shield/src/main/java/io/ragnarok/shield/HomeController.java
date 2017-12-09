@@ -16,6 +16,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.web.WebEngine;
+import javafx.scene.web.WebView;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -37,7 +39,10 @@ public class HomeController implements Initializable {
     Button signOut_btn;
     @FXML
     Label user_label;
-    
+    @FXML
+    WebView ytPlayer;
+
+    static WebEngine engine;
     private void toggleControls(){
         login_btn.setVisible(!login_btn.isVisible());
         signUp_btn.setVisible(!signUp_btn.isVisible());
@@ -57,6 +62,15 @@ public class HomeController implements Initializable {
         modalLogin.showAndWait();
         this.toggleControls();
     }
+
+    @FXML
+    public static void show(){
+        String url = Search.search();
+        System.out.println(url);
+        String content_Url = "<iframe width=\"560\" height=\"315\" src=\"http://www.youtube.com/embed/"+url+"\" frameborder=\"0\" allowfullscreen></iframe>";
+        engine.loadContent(content_Url);
+    }
+
     
     @FXML
     private void loginNav() throws IOException{
@@ -85,6 +99,7 @@ public class HomeController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO get user logged status and render home screen accordingly
+        engine = ytPlayer.getEngine();
     }    
     
 }

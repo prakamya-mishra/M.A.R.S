@@ -25,7 +25,7 @@ public class Search {
     private static YouTube youtube;
 
 
-    public static void main(String[] args) {
+    public static String search() {
         Properties properties = new Properties();
         try {
             InputStream in = Search.class.getResourceAsStream("/" + PROPERTIES_FILENAME);
@@ -64,7 +64,23 @@ public class Search {
             SearchListResponse searchResponse = search.execute();
             List<SearchResult> searchResultList = searchResponse.getItems();
             if (searchResultList != null) {
-                prettyPrint(searchResultList.iterator(), queryTerm);
+                //prettyPrint(searchResultList.iterator(), queryTerm);
+                while (searchResultList.iterator().hasNext()) {
+
+                    SearchResult singleVideo = searchResultList.iterator().next();
+                    ResourceId rId = singleVideo.getId();
+
+                    // Confirm that the result represents a video. Otherwise, the item will not contain a video ID.
+                    if (rId.getKind().equals("youtube#video")) {
+                        Thumbnail thumbnail = singleVideo.getSnippet().getThumbnails().getDefault();
+
+                        System.out.println(" Video Id " + rId.getVideoId());
+                        System.out.println(" Title: " + singleVideo.getSnippet().getTitle());
+                        System.out.println(" Thumbnail: " + thumbnail.getUrl());
+                        System.out.println("\n-------------------------------------------------------------\n");
+                        return rId.getVideoId();
+                    }
+                }
             }
         } catch (GoogleJsonResponseException e) {
             System.err.println("There was a service error: " + e.getDetails().getCode() + " : "
@@ -74,30 +90,6 @@ public class Search {
         } catch (Throwable t) {
             t.printStackTrace();
         }
-    }
-
-
-    private static void prettyPrint(Iterator<SearchResult> iteratorSearchResults, String query) {
-
-
-        if (!iteratorSearchResults.hasNext()) {
-            System.out.println(" There aren't any results for your query.");
-        }
-
-        while (iteratorSearchResults.hasNext()) {
-
-            SearchResult singleVideo = iteratorSearchResults.next();
-            ResourceId rId = singleVideo.getId();
-
-            // Confirm that the result represents a video. Otherwise, the item will not contain a video ID.
-            if (rId.getKind().equals("youtube#video")) {
-                Thumbnail thumbnail = singleVideo.getSnippet().getThumbnails().getDefault();
-
-                System.out.println(" Video Id " + rId.getVideoId());
-                System.out.println(" Title: " + singleVideo.getSnippet().getTitle());
-                System.out.println(" Thumbnail: " + thumbnail.getUrl());
-                System.out.println("\n-------------------------------------------------------------\n");
-            }
-        }
+        return "hi";
     }
 }

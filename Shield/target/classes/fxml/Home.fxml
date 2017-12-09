@@ -8,7 +8,8 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.geometry.Insets?>
 
-<BorderPane fx:id="background"  minHeight="300.0" minWidth="300.0" xmlns:fx="http://javafx.com/fxml/1" fx:controller="io.ragnarok.shield.HomeController">
+<?import javafx.scene.web.WebView?>
+<BorderPane fx:id="background" minHeight="300.0" minWidth="300.0" xmlns:fx="http://javafx.com/fxml/1" fx:controller="io.ragnarok.shield.HomeController">
 <center>
     <ScrollPane id="scroll-wrapper" fitToWidth="true">
     <content>
@@ -128,7 +129,9 @@
 </center>
 <left>
     <BorderPane id="left-pane" fx:id="paneLeft" prefWidth="650">
-        <top />
+        <top >
+            <WebView fx:id="ytPlayer"/>
+        </top>
         <bottom>    
         <VBox alignment="CENTER" spacing="25">
             <children>
