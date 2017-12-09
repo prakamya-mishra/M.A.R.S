@@ -51,6 +51,10 @@ public class HomeController implements Initializable {
     @FXML
     private ListView songList;
     @FXML
+    private ListView recoList;
+    @FXML
+    private ListView myList;
+    @FXML
     Label titleText;
     @FXML
     Label artistText;
@@ -115,24 +119,29 @@ public class HomeController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO get user logged status and render home screen accordingly
         engine = ytPlayer.getEngine();
-        String[] data = {"Pink World","Planet P Project",null};
-        ObservableList<String[]> dataobv = FXCollections.observableArrayList();
-        dataobv.add(data);
-        songList.setItems(dataobv);
-        songList.setCellFactory(new Callback<ListView<String[]>, javafx.scene.control.ListCell<String[]>>(){
+        Callback<ListView<String[]>, javafx.scene.control.ListCell<String[]>>  callback= new Callback<ListView<String[]>, javafx.scene.control.ListCell<String[]>>(){
         @Override
         public ListCell<String[]> call (ListView<String[]> listview){
             return new CustomCell();
-        }
-    });
-         songList.getSelectionModel().selectedItemProperty()
-        .addListener(new ChangeListener<String[]>() {
+        }};
+        ChangeListener<String[]> songSelector = new ChangeListener<String[]>() {
             @Override
           public void changed(ObservableValue<? extends String[]> observable,
               String[] oldValue, String[] newValue) {
                         show(newValue);
           }
-        });
+        };
+        
+        String[] data = {"Pink World","Planet P Project",null};
+        ObservableList<String[]> dataobv = FXCollections.observableArrayList();
+        dataobv.add(data);
+        songList.setItems(dataobv);
+        songList.setCellFactory(callback);
+        songList.getSelectionModel().selectedItemProperty().addListener(songSelector);
+        recoList.setCellFactory(callback);
+        recoList.getSelectionModel().selectedItemProperty().addListener(songSelector);
+        myList.setCellFactory(callback);
+        myList.getSelectionModel().selectedItemProperty().addListener(songSelector);
     } 
     
     
