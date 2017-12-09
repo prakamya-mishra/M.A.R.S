@@ -206,7 +206,7 @@ public class Functions {
 
     }
 
-    public static void recommendRefresh(String[] songInfo) {
+    public static void recommendRefresh() {
         try {
 
             Scanner scannerUser = new Scanner(new File("User_db.csv"));
@@ -249,5 +249,6 @@ public class Functions {
 
 
     }
+    
 }
 
