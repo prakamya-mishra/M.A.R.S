@@ -18,12 +18,14 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import javafx.util.Callback;
 
 /**
  * FXML Controller class
@@ -46,6 +48,10 @@ public class HomeController implements Initializable {
     WebView ytPlayer;
     @FXML
     private ListView songList;
+    @FXML
+    static Label titleText;
+    @FXML
+    static Label artistText;
 
     static WebEngine engine;
     private void toggleControls(){
@@ -69,7 +75,9 @@ public class HomeController implements Initializable {
     }
 
     @FXML
-    public static void show(){
+    public static void show(String[] data){
+        titleText.setText(data[0]);
+        artistText.setText(data[1]);
         String url = Search.search();
         String content_Url = "<iframe width=\"560\" height=\"315\" src=\"https://www.youtube-nocookie.com/embed/"+url+"?rel=0&amp;controls=0&amp;showinfo=0\" frameborder=\"0\" gesture=\"media\" allow=\"encrypted-media\" allowfullscreen></iframe>";
         engine.loadContent(content_Url);
@@ -100,14 +108,21 @@ public class HomeController implements Initializable {
     private void refreshReco(ActionEvent event){
         
     }
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO get user logged status and render home screen accordingly
         engine = ytPlayer.getEngine();
-        String[] data = {"Pink World","Planet P Project"};
+        String[] data = {"Pink World","Planet P Project",null};
         ObservableList<String[]> dataobv = FXCollections.observableArrayList();
         dataobv.add(data);
         songList.setItems(dataobv);
+        songList.setCellFactory(new Callback<ListView<String[]>, javafx.scene.control.ListCell<String[]>>(){
+        @Override
+        public ListCell<String[]> call (ListView<String[]> listview){
+            return new CustomCell();
+        }
+    });
     }   
     
     

@@ -98,3 +98,8 @@
     -fx-text-fill: white;
 }
 
+.list-view{
+    -fx-selection-bar: #ffffff;
+    -fx-selection-bar-non-focused: #ffffff;
+    -fx-background-insets: 0;
+}

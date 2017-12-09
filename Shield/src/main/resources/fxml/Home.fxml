@@ -36,8 +36,8 @@
         <top >
             <VBox alignment="CENTER" spacing="20">
                 <WebView fx:id="ytPlayer" maxHeight="331" maxWidth="578"/>
-                <Label fx:id="titleText" text="Title: Pink World" styleClass="songMeta"/>
-                <Label fx:id="artistText" text="Artist: Planet P World" styleClass="songMeta"/>
+                <Label fx:id="titleText" styleClass="songMeta"/>
+                <Label fx:id="artistText" styleClass="songMeta"/>
             </VBox>
         </top>
         <bottom>    

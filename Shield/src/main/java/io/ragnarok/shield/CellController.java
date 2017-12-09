@@ -7,7 +7,13 @@ package io.ragnarok.shield;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.VBox;
 
 /**
  * FXML Controller class
@@ -19,9 +25,41 @@ public class CellController implements Initializable {
     /**
      * Initializes the controller class.
      */
+    @ FXML
+    Label titleText;
+    @FXML
+    Label artistText;
+    @FXML
+    ImageView thumb;
+    @FXML
+    VBox cell;
+    
+    public void setCell(String[] data){
+            titleText.setText(data[0]);
+            artistText.setText(data[1]);
+            if(data[2]!=null){
+                Image image = new Image(getClass().getResource("/images/"+data[2]).toString());
+                thumb.setImage(image);
+            }
+        }
+    @FXML
+    private void hover(){
+        cell.setStyle(" -fx-background-color: #cccccc;");
+    }
+    
+    @FXML
+    private void leave(){
+        cell.setStyle(" -fx-background-color: transparent;");
+    }
+    
+    @FXML
+    public Node getVBox(){
+        return cell;
+    }
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        
     }    
     
 }
