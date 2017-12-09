@@ -7,6 +7,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.image.*?>
 
 <?import javafx.scene.web.WebView?>
 <BorderPane fx:id="background" minHeight="300.0" minWidth="300.0" xmlns:fx="http://javafx.com/fxml/1" fx:controller="io.ragnarok.shield.HomeController">
@@ -47,7 +48,7 @@
                 <children>    
                     <Label text="User" fx:id="user_label" visible="false" prefWidth="500" styleClass="user-header"/> 
                     <!-- Preffered width of label = Pref width of left pane - 40(left+right padding) - 110(width of button)-->
-                    <Button text="Sign Out" fx:id="signOut_btn" onAction="#logout" visible="false" prefWidth="110"/>
+                    <Button text="Sign Out" fx:id="signOut_btn" onAction="#logout" visible="false" prefWidth="110"/>     
                 </children>
                 </HBox>    
                 <HBox alignment="CENTER" spacing="40">

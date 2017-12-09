@@ -16,5 +16,30 @@
         </ImageView>
         <Label fx:id="titleText"/>
         <Label fx:id="artistText"/>
+        <HBox alignment="center" spacing="15">
+            <Button>
+               <graphic>
+                <AnchorPane>
+                <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                <image>
+                <Image url="/image/thumbdown.png" preserveRatio="false" smooth="false" />   
+                </image>       
+                </ImageView>
+                 </AnchorPane>
+                </graphic>
+            </Button>
+            <Button text="+"/>
+            <Button>
+               <graphic>
+                <AnchorPane>
+                <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                <image>
+                <Image url="/image/thumbup.png" preserveRatio="false" smooth="false" />   
+                </image>       
+                </ImageView>
+                 </AnchorPane>
+                </graphic>
+            </Button>
+        </HBox>
     </children>
 </VBox>
