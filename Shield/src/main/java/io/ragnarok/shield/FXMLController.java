@@ -65,11 +65,19 @@ public class FXMLController implements Initializable {
     
     private void onCloseAuthenticate(Event event, String user, String pass){
         String hashPass = this.MD5(pass);
-        closeStage(event);
+        if(Functions.authenticate(user,hashPass)) {
+            HomeController.user = user;
+            HomeController.toggle = true;
+            closeStage(event);
+        }
+        else{
+
+        }
     }
     
     private void onCloseAddUser(Event event, String user, String pass){
         String hashPass = this.MD5(pass);
+        Functions.signUp(user,hashPass);
         closeStage(event);
     }
     

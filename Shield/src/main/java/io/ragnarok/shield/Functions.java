@@ -7,9 +7,11 @@ import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
 
+import static java.lang.String.*;
+
 public class Functions {
 
-
+    static int c=0;
     public static ArrayList<String[]> addRandomSongs() {
         Scanner scanner = null;
         ArrayList<String[]> song_names = new ArrayList<String[]>();
@@ -54,42 +56,39 @@ public class Functions {
 
     public static boolean authenticate(String username,String password)
     {
-        Scanner scanner=null;
-        int flag=0;
-        try{
+            Scanner scanner=null;
+            boolean flag=false;
+            int i;
+            try{
 
-            scanner = new Scanner(new File("User_db.csv"));
-            ArrayList<String> rewrite=new ArrayList<String>();
-            rewrite.add(scanner.nextLine());
-            while (scanner.hasNextLine())
-            {
-                String line=scanner.nextLine();
-                String[] columns = line.split(",");
-                if (columns[0].equals(username))
+                scanner = new Scanner(new File("User_db.csv"));
+                ArrayList<String> rewrite=new ArrayList<String>();
+                rewrite.add(scanner.nextLine());
+                while (scanner.hasNextLine())
                 {
-                    if (columns[1].equals(password)) {
-                        line=columns[0]+","+columns[1]+","+"1"+","+columns[3]+","+columns[4]+","+columns[5]+","+columns[6]+","+columns[7]+","+columns[8]+","+columns[9]+","+columns[10]+","+columns[11]+","+columns[12]+","+columns[13]+"\n";
-                        rewrite.add(line);
-                        flag=1;
+                    String line=scanner.nextLine();
+                    String[] columns = line.split(",");
+                    if (columns[0].equals(username)){
+                        if (columns[1].equals(password)) {
+                            columns[2] = "1";
+                            flag=true;
+                        }
                     }
-
-                    else {
-                        flag = 0;
-                        rewrite.add(line);
-                    }
-                }
-
-                else
-                {
-                    rewrite.add(line);
-                }
+                    else{
+                            columns[2] = "0";
+                        }
+                    line = columns[0];
+                for(i =1;i<columns.length;i++)
+                    line+= ","+columns[i];
+                rewrite.add(line);
 
             }
 
-            FileWriter writer=new FileWriter("User_db");
-            for(String s:rewrite)
+            FileWriter writer=new FileWriter("User_db.csv");
+            writer.append(rewrite.get(0));
+            for(i=1;i<rewrite.size();i++)
             {
-                writer.append(s);
+                writer.append("\n"+rewrite.get(i));
             }
             writer.flush();
             writer.close();
@@ -98,20 +97,20 @@ public class Functions {
             e.printStackTrace();
         }
 
-        if (flag==1)
-        {
-            return true;
-        }
-        else
-            return false;
+        return flag;
     }
 
     public static void signUp(String username,String password)
     {
         try{
+            c = c+1;
             FileWriter writer = new FileWriter("User_db.csv",true);
-            String line=username+","+password+","+"0"+","+""+","+""+","+""+","+""+","+""+","+""+","+""+","+""+","+""+","+""+","+""+"\n";
-            writer.append(line);
+            String line=username+","+password+","+"0"+", , , , , , , , , , , ";
+            if(c == 1){
+                writer.append(line);
+            }else{
+                writer.append("\n"+line);
+            }
             writer.flush();
             writer.close();
         }catch(Exception e){

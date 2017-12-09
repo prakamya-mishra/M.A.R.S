@@ -59,11 +59,14 @@ public class HomeController implements Initializable {
     @FXML
     Label artistText;
 
+    static String user;
+    static boolean toggle = false;
     static WebEngine engine;
     private void toggleControls(){
         login_btn.setVisible(!login_btn.isVisible());
         signUp_btn.setVisible(!signUp_btn.isVisible());
         signOut_btn.setVisible(!signOut_btn.isVisible());
+        user_label.setText(HomeController.user);
         user_label.setVisible(!user_label.isVisible());
     }
     
@@ -77,7 +80,9 @@ public class HomeController implements Initializable {
         modalLogin.initOwner(login_btn.getScene().getWindow());
         modalLogin.initModality(Modality.APPLICATION_MODAL);
         modalLogin.showAndWait();
-        this.toggleControls();
+        if(toggle)
+            this.toggleControls();
+        toggle = false;
     }
 
     public void show(final String[] data){
