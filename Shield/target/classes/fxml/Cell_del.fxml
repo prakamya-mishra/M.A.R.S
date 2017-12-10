@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.image.*?>
+
+<VBox fx:id="cell" prefWidth="150.0" xmlns:fx="http://javafx.com/fxml/1" alignment="center" fx:controller="io.ragnarok.shield.CellController">
+    <children>
+        <ImageView fx:id="thumb" preserveRatio="true" fitHeight="120" fitWidth="120" onMouseEntered="#hover" onMouseExited="#leave">
+            <image>
+                <Image url="/image/playbutton.png"/>
+            </image>
+        </ImageView>
+        <Label fx:id="titleText"/>
+        <Label fx:id="artistText"/>
+        <HBox alignment="center" spacing="15">
+            <Button onAction="#disLike">
+               <graphic>
+                <AnchorPane>
+                <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                <image>
+                <Image url="/image/thumbdown.png" preserveRatio="false" smooth="false" />   
+                </image>       
+                </ImageView>
+                 </AnchorPane>
+                </graphic>
+            </Button>
+            <Button text="-" onAction="#removeFromMySongs"/>
+            <Button onAction="#Like">
+               <graphic>
+                <AnchorPane>
+                <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                <image>
+                <Image url="/image/thumbup.png" preserveRatio="false" smooth="false" />   
+                </image>       
+                </ImageView>
+                 </AnchorPane>
+                </graphic>
+            </Button>
+        </HBox>
+    </children>
+</VBox>

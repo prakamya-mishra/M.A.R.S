@@ -19,8 +19,8 @@ import javafx.scene.control.ListCell;
 public class CustomCell extends ListCell<String[]>{
    FXMLLoader fxloader ;
     CellController controller;
-    CustomCell(){
-        fxloader = new FXMLLoader(getClass().getResource("/fxml/Cell.fxml"));
+    CustomCell(String fxmlUrl){
+        fxloader = new FXMLLoader(getClass().getResource(fxmlUrl));
            try{
                fxloader.load();
             } catch (IOException ex) {

@@ -346,15 +346,15 @@ public class Functions {
                 }
             }
 
-            MySongs_db_writer.flush();
-            MySongs_db_writer.close();
-
 
             FileWriter MySongs_db_writer_after = new FileWriter("MySongs_db.csv",false);
             MySongs_db_writer_after.append("user_name,user_pwd,logged_in,title,artist_name,artist.hottness,duration,familiarity,key,loudness,mode,tempo,time_signature,label");
             for(String s:afterDelete){
                 MySongs_db_writer.append("\n"+s);
+                System.out.println(s);
             }
+            MySongs_db_writer.flush();
+            MySongs_db_writer.close();
             MySongs_db_writer_after.flush();
             MySongs_db_writer_after.close();
 

@@ -155,8 +155,13 @@ public class HomeController implements Initializable {
         Callback<ListView<String[]>, javafx.scene.control.ListCell<String[]>>  callback= new Callback<ListView<String[]>, javafx.scene.control.ListCell<String[]>>(){
         @Override
         public ListCell<String[]> call (ListView<String[]> listview){
-            return new CustomCell();
+            return new CustomCell("/fxml/Cell.fxml");
         }};
+        Callback<ListView<String[]>, javafx.scene.control.ListCell<String[]>>  callback2= new Callback<ListView<String[]>, javafx.scene.control.ListCell<String[]>>(){
+            @Override
+            public ListCell<String[]> call (ListView<String[]> listview){
+                return new CustomCell("/fxml/Cell_del.fxml");
+            }};
         ChangeListener<String[]> songSelector = new ChangeListener<String[]>() {
             @Override
           public void changed(ObservableValue<? extends String[]> observable,
@@ -165,12 +170,13 @@ public class HomeController implements Initializable {
           }
         };
 
+
         this.refreshSongs();
         songList.setCellFactory(callback);
         songList.getSelectionModel().selectedItemProperty().addListener(songSelector);
         recoList.setCellFactory(callback);
         recoList.getSelectionModel().selectedItemProperty().addListener(songSelector);
-        myList.setCellFactory(callback);
+        myList.setCellFactory(callback2);
         myList.getSelectionModel().selectedItemProperty().addListener(songSelector);
         mylistStatic = myList;
     } 
