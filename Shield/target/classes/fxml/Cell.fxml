@@ -28,7 +28,7 @@
                  </AnchorPane>
                 </graphic>
             </Button>
-            <Button text="+"/>
+            <Button text="+" onAction="#addToMySongs"/>
             <Button onAction="#Like">
                <graphic>
                 <AnchorPane>

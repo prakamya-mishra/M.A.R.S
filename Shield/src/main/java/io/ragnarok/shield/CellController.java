@@ -67,6 +67,15 @@ public class CellController implements Initializable {
         String[] metaData = {songName,artistName};
         Functions.disLike(metaData);
     }
+
+    @FXML
+    private void addToMySongs(){
+        String songName = titleText.getText();
+        String artistName = artistText.getText();
+        String[] metaData = {songName,artistName};
+        Functions.songAdd(metaData);
+        HomeController.refreshMySong();
+    }
     
     @FXML
     public Node getVBox(){

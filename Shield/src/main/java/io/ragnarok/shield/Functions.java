@@ -253,7 +253,7 @@ public class Functions {
                     classify = logistic.classify(x);
                     if (classify == 1) {
                         //System.out.println("\n" + loggedUserName + "," + loggedUserPwd + "," + logged + "," + (float) Float.parseFloat(columns[2]) + "," + (float) Float.parseFloat(columns[3]) + "," + (float) Float.parseFloat(columns[4]) + "," + (float) Float.parseFloat(columns[5]) + "," + (float) Float.parseFloat(columns[6]) + "," + (float) Float.parseFloat(columns[7]) + "," + (float) Float.parseFloat(columns[8]) + "," + (float) Float.parseFloat(columns[9]) + "," + classify);
-                        Recommended_db_writer.append("\n" + loggedUserName + "," + loggedUserPwd + "," + logged + "," + (float) Float.parseFloat(columns[2]) + "," + (float) Float.parseFloat(columns[3]) + "," + (float) Float.parseFloat(columns[4]) + "," + (float) Float.parseFloat(columns[5]) + "," + (float) Float.parseFloat(columns[6]) + "," + (float) Float.parseFloat(columns[7]) + "," + (float) Float.parseFloat(columns[8]) + "," + (float) Float.parseFloat(columns[9]) + "," + classify);
+                        Recommended_db_writer.append("\n" + loggedUserName + "," + loggedUserPwd + "," + logged + ","+ columns[0] + "," + columns[1] + "," + columns[2] + "," + columns[3] + "," + columns[4] + "," + columns[5] + "," + columns[6] + "," +columns[7] + "," + columns[8] + "," + columns[9] + "," + classify);
 
                     }
                 }
@@ -289,19 +289,18 @@ public class Functions {
                     break;
                 }
             }
-            FileWriter MySongs_db_writer = new FileWriter("MySongs_db.csv");
-            MySongs_db_writer.append("user_name,user_pwd,logged_in,title,artist_name,artist.hottness,duration,familiarity,key,loudness,mode,tempo,time_signature,label");
+            FileWriter MySongs_db_writer = new FileWriter("MySongs_db.csv",true);
             String newSong;
             while (scannerSongs.hasNextLine()) {
-                String line = scannerUser.nextLine();
+                String line = scannerSongs.nextLine();
                 String[] columns = line.split(",");
                 if(songInfo[0].equals(columns[0]) && songInfo[1].equals(columns[1])){
                     newSong = loggedUserName + "," + loggedUserPwd + "," + logged + "," + columns[0] + "," + columns[1] + "," + columns[2] + "," + columns[3] + "," + columns[4] + "," + columns[5] + "," + columns[6] + "," + columns[7] + "," + columns[8] + "," + columns[9] + "," + columns[10];
                     MySongs_db_writer.append("\n"+newSong);
-                    MySongs_db_writer.close();
-                    MySongs_db_writer.flush();
                 }
             }
+            MySongs_db_writer.flush();
+            MySongs_db_writer.close();
 
         } catch (FileNotFoundException e) {
             e.printStackTrace();
@@ -343,7 +342,7 @@ public class Functions {
             while (scannerSongs.hasNextLine()) {
                 String line = scannerSongs.nextLine();
                 String[] columns = line.split(",");
-                String[] songInfo = {columns[0],columns[1],null};
+                String[] songInfo = {columns[3],columns[4],null};
                 allSongs.add(songInfo);
             }
             return allSongs;
@@ -353,6 +352,27 @@ public class Functions {
         }
         return null;
     }
+
+    public static ArrayList<String[]> thirdList(){
+
+        try{
+            Scanner scannerSongs = new Scanner(new File("MySongs_db.csv"));
+            ArrayList<String[]> allSongs = new ArrayList<>();
+            scannerSongs.nextLine();
+            while (scannerSongs.hasNextLine()) {
+                String line = scannerSongs.nextLine();
+                String[] columns = line.split(",");
+                String[] songInfo = {columns[3],columns[4],null};
+                allSongs.add(songInfo);
+            }
+            return allSongs;
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
 
 }
 

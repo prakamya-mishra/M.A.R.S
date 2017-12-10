@@ -55,6 +55,8 @@ public class HomeController implements Initializable {
     private ListView recoList;
     @FXML
     private ListView myList;
+
+    private static ListView mylistStatic;
     @FXML
     Label titleText;
     @FXML
@@ -81,8 +83,10 @@ public class HomeController implements Initializable {
         modalLogin.initOwner(login_btn.getScene().getWindow());
         modalLogin.initModality(Modality.APPLICATION_MODAL);
         modalLogin.showAndWait();
-        if(toggle)
+        if(toggle) {
             this.toggleControls();
+            HomeController.refreshMySong();
+        }
         toggle = false;
     }
 
@@ -121,14 +125,23 @@ public class HomeController implements Initializable {
     }
     
     @FXML
-    private void refreshReco(ActionEvent event){
+    private void refreshReco() {
         Functions.recommendRefresh();
         ArrayList<String[]> songs = Functions.secondList();
         ObservableList<String[]> dataobv = FXCollections.observableArrayList();
         dataobv.addAll(songs);
         recoList.setItems(dataobv);
     }
-    
+
+    @FXML
+    public static void refreshMySong() {
+
+        ArrayList<String[]> songs = Functions.thirdList();
+        ObservableList<String[]> dataobv = FXCollections.observableArrayList();
+        dataobv.addAll(songs);
+        mylistStatic.setItems(dataobv);
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO get user logged status and render home screen accordingly
@@ -153,6 +166,7 @@ public class HomeController implements Initializable {
         recoList.getSelectionModel().selectedItemProperty().addListener(songSelector);
         myList.setCellFactory(callback);
         myList.getSelectionModel().selectedItemProperty().addListener(songSelector);
+        mylistStatic = myList;
     } 
     
     
