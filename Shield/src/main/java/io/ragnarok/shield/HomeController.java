@@ -119,7 +119,7 @@ public class HomeController implements Initializable {
     
     @FXML
     private void refreshSongs(){
-        ArrayList<String[]> songs = Functions.firstList();
+        ArrayList<String[]> songs = Functions.addRandomSongs();
         ObservableList<String[]> dataobv = FXCollections.observableArrayList();
         dataobv.addAll(songs);
         songList.setItems(dataobv);

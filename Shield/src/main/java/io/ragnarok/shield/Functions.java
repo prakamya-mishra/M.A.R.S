@@ -25,9 +25,10 @@ public class Functions {
             while (scanner.hasNextLine()) {
                 String line = scanner.nextLine();
                 String[] columns = line.split(",");
-                String[] temp = new String[2];
+                String[] temp = new String[3];
                 temp[0] = columns[0];
                 temp[1] = columns[1];
+                temp[2] = null;
                 song_names.add(temp);
 
             }
