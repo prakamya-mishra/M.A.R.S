@@ -11,6 +11,7 @@
         <HBox alignment="CENTER_RIGHT">
             <Button fx:id="closeButtonS" text="X" onAction="#closeStage"/>
         </HBox>
+        <Label fx:id="signUpLabel" text="Sign Up" styleClass="loginMeta"/>
         <TextField fx:id="usernameFieldS" promptText="Username" maxWidth="200" />
         <PasswordField fx:id="passwordFieldS" promptText="Password" maxWidth="200"/>
         <PasswordField fx:id="confirmPasswordFieldS" promptText="Confirm Password" maxWidth="200" onKeyPressed="#handleSignUp"/>

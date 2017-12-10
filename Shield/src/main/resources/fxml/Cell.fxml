@@ -11,7 +11,7 @@
     <children>
         <ImageView fx:id="thumb" preserveRatio="true" fitHeight="120" fitWidth="120" onMouseEntered="#hover" onMouseExited="#leave">
             <image>
-                <Image url="/image/logo.png"/>
+                <Image url="/image/playbutton.png"/>
             </image>
         </ImageView>
         <Label fx:id="titleText"/>

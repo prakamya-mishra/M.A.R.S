@@ -3,7 +3,7 @@
 }
 
 #launcher{
-    -fx-background-color: red;
+    -fx-background-color: #c72f2e;
 }
 .progress-indicator{
     -fx-progress-color: white;
@@ -32,7 +32,7 @@
 }
 
 #left-pane{
-    -fx-background-color: red;
+    -fx-background-color: #a4142b;
     -fx-padding: 10 5 20 5;
 }
 /*Remove borders from scroll pane*/
@@ -96,6 +96,12 @@
     -fx-font-size: 25;
     -fx-font-weight: bold;
     -fx-text-fill: white;
+}
+
+.loginMeta{
+    -fx-font-size: 25;
+    -fx-font-weight: bold;
+    -fx-text-fill: red;
 }
 
 .list-view{

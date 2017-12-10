@@ -34,7 +34,7 @@ public class MainApp extends Application {
         scene.getStylesheets().add("/styles/Styles.css");
         
         stage.setTitle("Shield");
-        stage.getIcons().add(new Image(getClass().getResourceAsStream( "/image/logo.png" ))); 
+        stage.getIcons().add(new Image(getClass().getResourceAsStream( "/image/logo.png" )));
         stage.minHeightProperty().set(500);
         stage.minWidthProperty().set(650);
         stage.setScene(scene);
@@ -42,7 +42,7 @@ public class MainApp extends Application {
         FadeTransition ft = new FadeTransition(Duration.millis(500),launch);
         ft.setFromValue(1.0);
         ft.setToValue(0.0);
-        ft.setDelay(Duration.seconds(1));
+        ft.setDelay(Duration.seconds(3));
         ft.play();
         ft.onFinishedProperty().set(new EventHandler<ActionEvent>(){
             @Override

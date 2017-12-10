@@ -9,9 +9,9 @@
 
 <VBox alignment="CENTER" spacing="30" id="launcher" prefHeight="200" prefWidth="320" xmlns:fx="http://javafx.com/fxml" fx:controller="io.ragnarok.shield.FXMLController">
     <children>
-        <ImageView preserveRatio="true">
+        <ImageView preserveRatio="true" fitHeight="200" fitWidth="200">
             <image>
-                <Image url="/image/logo.png"/>
+                <Image url="/image/logo.png" />
             </image>
         </ImageView>
         <ProgressIndicator />
