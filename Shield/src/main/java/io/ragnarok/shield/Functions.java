@@ -433,6 +433,54 @@ public class Functions {
         return null;
     }
 
+    public static String[] smartShuffle(ArrayList<String[]> s)
+    {
+        double max_avg=-10000;
+        String[] aash=new String[2];
+        ArrayList<String[]> temp=new ArrayList<String[]>();
+
+        for (String[] p:s)
+        {
+            double avg;
+            try{
+                Scanner scannerSongs = new Scanner(new File("MySongs_db.csv"));
+                scannerSongs.nextLine();
+                while (scannerSongs.hasNextLine())
+                {
+                    String line=scannerSongs.nextLine();
+                    String[] columns=line.split(",");
+                    if (columns[0].equals(p[0]) && columns[1].equals(p[1]))
+                    {
+
+                        avg=(Integer.parseInt(columns[2])*2 + Integer.parseInt(columns[4])*4 + Integer.parseInt(columns[5])*6 + Integer.parseInt(columns[8])*6)/18;
+                        if (avg>max_avg)
+                        {
+                            max_avg=avg;
+                        }
+                        String[] songInfo = {columns[0],columns[1],columns[2],columns[3],columns[4],columns[5],columns[6],columns[7],columns[8],columns[9],columns[10],columns[11],columns[12],columns[13],Double.toString(avg)};
+                        temp.add(songInfo);
+                    }
+
+                }
+
+            }catch (FileNotFoundException e){
+                e.printStackTrace();
+            }
+        }
+
+        for (String[] t:temp)
+        {
+            if (Double.parseDouble(t[14])==max_avg)
+            {
+                String[] finalString={t[0],t[1],t[2],t[3],t[4],t[5],t[6],t[7],t[8],t[9],t[10],t[11],t[12],t[13]};
+                return finalString;
+            }
+        }
+
+        return aash;
+
+    }
+
 
 }
 
