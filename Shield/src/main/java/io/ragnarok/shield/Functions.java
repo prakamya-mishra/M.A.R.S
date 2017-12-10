@@ -294,7 +294,7 @@ public class Functions {
             while (scannerSongs.hasNextLine()) {
                 String line = scannerSongs.nextLine();
                 String[] columns = line.split(",");
-                if(songInfo[0].equals(columns[0]) && songInfo[1].equals(columns[1])){
+                if(songInfo[2].equals(loggedUserName) && songInfo[0].equals(columns[0]) && songInfo[1].equals(columns[1])){
                     newSong = loggedUserName + "," + loggedUserPwd + "," + logged + "," + columns[0] + "," + columns[1] + "," + columns[2] + "," + columns[3] + "," + columns[4] + "," + columns[5] + "," + columns[6] + "," + columns[7] + "," + columns[8] + "," + columns[9] + "," + columns[10];
                     MySongs_db_writer.append("\n"+newSong);
                 }
@@ -310,6 +310,64 @@ public class Functions {
 
 
     }
+
+
+    public static void songDelete(String[] songInfo) {
+        try {
+
+            Scanner scannerUser = new Scanner(new File("User_db.csv"));
+            Scanner scannerSongs = new Scanner(new File("Songs_db.csv"));
+            ArrayList<String> userDbLines = new ArrayList<String>();
+            userDbLines.add(scannerUser.nextLine());
+            String loggedUserName = null,loggedUserPwd = null;
+            int logged = 0;
+            while (scannerUser.hasNextLine()) {
+                String line = scannerUser.nextLine();
+                String[] columns = line.split(",");
+                int loggedIn = Integer.parseInt(columns[2]);
+                if(loggedIn == 1) {
+                    loggedUserName = columns[0];
+                    loggedUserPwd = columns[1];
+                    logged = loggedIn;
+                    break;
+                }
+            }
+
+            FileWriter MySongs_db_writer = new FileWriter("MySongs_db.csv",true);
+            String newSong;
+            ArrayList<String> afterDelete = new ArrayList<>();
+            while (scannerSongs.hasNextLine()) {
+                String line = scannerSongs.nextLine();
+                String[] columns = line.split(",");
+                if(songInfo[2].equals(loggedUserName) && !songInfo[0].equals(columns[0]) && !songInfo[1].equals(columns[1])) {
+                    newSong = loggedUserName + "," + loggedUserPwd + "," + logged + "," + columns[0] + "," + columns[1] + "," + columns[2] + "," + columns[3] + "," + columns[4] + "," + columns[5] + "," + columns[6] + "," + columns[7] + "," + columns[8] + "," + columns[9] + "," + columns[10];
+                    afterDelete.add(newSong);
+                }
+            }
+
+            MySongs_db_writer.flush();
+            MySongs_db_writer.close();
+
+
+            FileWriter MySongs_db_writer_after = new FileWriter("MySongs_db.csv",false);
+            MySongs_db_writer_after.append("user_name,user_pwd,logged_in,title,artist_name,artist.hottness,duration,familiarity,key,loudness,mode,tempo,time_signature,label");
+            for(String s:afterDelete){
+                MySongs_db_writer.append("\n"+s);
+            }
+            MySongs_db_writer_after.flush();
+            MySongs_db_writer_after.close();
+
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
+    }
+
+
 
     public static ArrayList<String[]> firstList(){
 
@@ -353,7 +411,7 @@ public class Functions {
         return null;
     }
 
-    public static ArrayList<String[]> thirdList(){
+    public static ArrayList<String[]> thirdList(String user){
 
         try{
             Scanner scannerSongs = new Scanner(new File("MySongs_db.csv"));
@@ -362,8 +420,10 @@ public class Functions {
             while (scannerSongs.hasNextLine()) {
                 String line = scannerSongs.nextLine();
                 String[] columns = line.split(",");
-                String[] songInfo = {columns[3],columns[4],null};
-                allSongs.add(songInfo);
+                if(columns[0].equals(user)){
+                    String[] songInfo = {columns[3],columns[4],null};
+                    allSongs.add(songInfo);
+                }
             }
             return allSongs;
 

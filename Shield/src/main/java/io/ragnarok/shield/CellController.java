@@ -72,7 +72,7 @@ public class CellController implements Initializable {
     private void addToMySongs(){
         String songName = titleText.getText();
         String artistName = artistText.getText();
-        String[] metaData = {songName,artistName};
+        String[] metaData = {songName,artistName,HomeController.getUser()};
         Functions.songAdd(metaData);
         HomeController.refreshMySong();
     }

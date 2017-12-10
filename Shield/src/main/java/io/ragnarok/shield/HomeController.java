@@ -112,6 +112,8 @@ public class HomeController implements Initializable {
     
      @FXML
     private void logout(){
+        HomeController.user="";
+        HomeController.refreshMySong();
        this.toggleControls();
     }
     
@@ -122,6 +124,10 @@ public class HomeController implements Initializable {
         dataobv.addAll(songs);
         songList.setItems(dataobv);
         
+    }
+
+    public static String getUser(){
+        return user;
     }
     
     @FXML
@@ -136,7 +142,7 @@ public class HomeController implements Initializable {
     @FXML
     public static void refreshMySong() {
 
-        ArrayList<String[]> songs = Functions.thirdList();
+        ArrayList<String[]> songs = Functions.thirdList(HomeController.user);
         ObservableList<String[]> dataobv = FXCollections.observableArrayList();
         dataobv.addAll(songs);
         mylistStatic.setItems(dataobv);
