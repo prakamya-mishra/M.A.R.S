@@ -232,7 +232,7 @@ public class Functions {
             List<Logistic.Instance> instances = Logistic.readDataSet("User_db.csv",loggedUserName);
             Logistic logistic = new Logistic(8);
             logistic.train(instances);
-            int classify;
+            double classify;
             FileWriter Recommended_db_writer = new FileWriter("Recommended_db.csv");
             Recommended_db_writer.append("user_name,user_pwd,logged_in,title,artist_name,artist.hottness,duration,familiarity,key,loudness,mode,tempo,time_signature,label");
             int c = 0;
@@ -251,7 +251,7 @@ public class Functions {
                     System.out.println();
 
                     classify = logistic.classify(x);
-                    if (classify == 1) {
+                    if (classify > 0.5) {
                         //System.out.println("\n" + loggedUserName + "," + loggedUserPwd + "," + logged + "," + (float) Float.parseFloat(columns[2]) + "," + (float) Float.parseFloat(columns[3]) + "," + (float) Float.parseFloat(columns[4]) + "," + (float) Float.parseFloat(columns[5]) + "," + (float) Float.parseFloat(columns[6]) + "," + (float) Float.parseFloat(columns[7]) + "," + (float) Float.parseFloat(columns[8]) + "," + (float) Float.parseFloat(columns[9]) + "," + classify);
                         Recommended_db_writer.append("\n" + loggedUserName + "," + loggedUserPwd + "," + logged + ","+ columns[0] + "," + columns[1] + "," + columns[2] + "," + columns[3] + "," + columns[4] + "," + columns[5] + "," + columns[6] + "," +columns[7] + "," + columns[8] + "," + columns[9] + "," + classify);
 

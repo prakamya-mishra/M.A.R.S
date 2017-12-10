@@ -22,7 +22,7 @@ public class Logistic {
     private int ITERATIONS = 3000;
 
     public Logistic(int n) {
-        this.rate = 0.3;
+        this.rate = 0.0001;
         weights = new double[n];
     }
 
@@ -32,30 +32,26 @@ public class Logistic {
 
     public void train(List<Instance> instances) {
         for (int n=0; n<ITERATIONS; n++) {
-            double lik = 0.0;
+
             for (int i=0; i<instances.size(); i++) {
                 float[] x = instances.get(i).x;
                 double predicted = classify(x);
                 Float label = instances.get(i).label;
                 for (int j=0; j<weights.length; j++) {
-                    weights[j] = weights[j] + rate * (label - predicted) * predicted * (1 - predicted) * x[j];
+                    weights[j] = weights[j] + rate * (label - predicted) * x[j];
                 }
 
             }
-            System.out.println("iteration: " + n + " " + Arrays.toString(weights) + " mle: " + lik);
+            System.out.println("iteration: " + n + " " + Arrays.toString(weights));
         }
     }
 
-    public int classify(float[] x) {
-        double logit = .0;
+    public double classify(float[] x) {
+        double logit = 0.0;
         for (int i=0; i<weights.length;i++)  {
             logit += weights[i] * x[i];
         }
-        if (sigmoid(logit)>0.1){
-            return 1;
-        }else {
-            return 0;
-        }
+        return sigmoid(logit);
     }
 
     public static class Instance {
@@ -97,18 +93,6 @@ public class Logistic {
         return dataset;
     }
 
-    /*
-    public static void main(String... args) throws FileNotFoundException {
-        List<Instance> instances = readDataSet("User_db.csv",user_name);
-        Logistic logistic = new Logistic(8);
-        logistic.train(instances);
-        int[] x = {2, 1, 1, 0, 1};
-        System.out.println("prob(1|x) = " + logistic.classify(x));
 
-        int[] x2 = {1, 0, 1, 0, 0};
-        System.out.println("prob(1|x2) = " + logistic.classify(x2));
-
-    }
-   */
 
 }
