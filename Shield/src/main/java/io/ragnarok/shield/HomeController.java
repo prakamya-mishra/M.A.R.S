@@ -148,6 +148,16 @@ public class HomeController implements Initializable {
         mylistStatic.setItems(dataobv);
     }
 
+    @FXML
+    private void showShuffle(){
+        ObservableList<String[]> dataobv =mylistStatic.getItems();
+        ArrayList<String[]> dataArr = new ArrayList<String[]>();
+        for(String[] i: dataobv)
+            dataArr.add(i);
+        String[] data=Functions.smartShuffle(dataArr);
+        this.show(data);
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO get user logged status and render home screen accordingly
