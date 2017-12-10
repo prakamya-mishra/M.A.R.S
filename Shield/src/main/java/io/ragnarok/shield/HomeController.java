@@ -7,6 +7,7 @@ package io.ragnarok.shield;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -111,13 +112,21 @@ public class HomeController implements Initializable {
     }
     
     @FXML
-    private void refreshSongs(ActionEvent event){
+    private void refreshSongs(){
+        ArrayList<String[]> songs = Functions.firstList();
+        ObservableList<String[]> dataobv = FXCollections.observableArrayList();
+        dataobv.addAll(songs);
+        songList.setItems(dataobv);
         
     }
     
     @FXML
     private void refreshReco(ActionEvent event){
         Functions.recommendRefresh();
+        ArrayList<String[]> songs = Functions.secondList();
+        ObservableList<String[]> dataobv = FXCollections.observableArrayList();
+        dataobv.addAll(songs);
+        recoList.setItems(dataobv);
     }
     
     @Override
@@ -137,10 +146,7 @@ public class HomeController implements Initializable {
           }
         };
 
-        String[] data = {"Pink World","Planet P Project",null};
-        ObservableList<String[]> dataobv = FXCollections.observableArrayList();
-        dataobv.add(data);
-        songList.setItems(dataobv);
+        this.refreshSongs();
         songList.setCellFactory(callback);
         songList.getSelectionModel().selectedItemProperty().addListener(songSelector);
         recoList.setCellFactory(callback);

@@ -1,5 +1,6 @@
 package io.ragnarok.shield;
 
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
@@ -116,7 +117,7 @@ public class Functions {
         }
     }
 
-    public static void like(String[] songInfo) {
+    public static void Like(String[] songInfo) {
         try {
 
             Scanner scannerUser = new Scanner(new File("User_db.csv"));
@@ -225,7 +226,9 @@ public class Functions {
                     logged = loggedIn;
                     break;
                 }
+                System.out.println(loggedUserName);
             }
+
             List<Logistic.Instance> instances = Logistic.readDataSet("User_db.csv",loggedUserName);
             Logistic logistic = new Logistic(8);
             logistic.train(instances);
@@ -239,16 +242,17 @@ public class Functions {
                 if(c>1) {
                     String[] columns = line.split(",");
                     for(int i = 2 ; i < columns.length-1;i++){
-                        if(columns[i].isEmpty()){
-                            columns[i] = "0";
-                        }
+
                     }
-                    System.out.println(line);
                     float[] x = {Float.parseFloat(columns[2]), Float.parseFloat(columns[3]), Float.parseFloat(columns[4]), Float.parseFloat(columns[5]), Float.parseFloat(columns[6]), Float.parseFloat(columns[7]), Float.parseFloat(columns[8]), Float.parseFloat(columns[9])};
+                    for(float f:x){
+                        System.out.print(f);
+                    }
+                    System.out.println();
+
                     classify = logistic.classify(x);
-                    System.out.println(classify);
                     if (classify == 1) {
-                        System.out.println("\n" + loggedUserName + "," + loggedUserPwd + "," + logged + "," + (float) Float.parseFloat(columns[2]) + "," + (float) Float.parseFloat(columns[3]) + "," + (float) Float.parseFloat(columns[4]) + "," + (float) Float.parseFloat(columns[5]) + "," + (float) Float.parseFloat(columns[6]) + "," + (float) Float.parseFloat(columns[7]) + "," + (float) Float.parseFloat(columns[8]) + "," + (float) Float.parseFloat(columns[9]) + "," + classify);
+                        //System.out.println("\n" + loggedUserName + "," + loggedUserPwd + "," + logged + "," + (float) Float.parseFloat(columns[2]) + "," + (float) Float.parseFloat(columns[3]) + "," + (float) Float.parseFloat(columns[4]) + "," + (float) Float.parseFloat(columns[5]) + "," + (float) Float.parseFloat(columns[6]) + "," + (float) Float.parseFloat(columns[7]) + "," + (float) Float.parseFloat(columns[8]) + "," + (float) Float.parseFloat(columns[9]) + "," + classify);
                         Recommended_db_writer.append("\n" + loggedUserName + "," + loggedUserPwd + "," + logged + "," + (float) Float.parseFloat(columns[2]) + "," + (float) Float.parseFloat(columns[3]) + "," + (float) Float.parseFloat(columns[4]) + "," + (float) Float.parseFloat(columns[5]) + "," + (float) Float.parseFloat(columns[6]) + "," + (float) Float.parseFloat(columns[7]) + "," + (float) Float.parseFloat(columns[8]) + "," + (float) Float.parseFloat(columns[9]) + "," + classify);
 
                     }
@@ -306,6 +310,48 @@ public class Functions {
         }
 
 
+    }
+
+    public static ArrayList<String[]> firstList(){
+
+        try{
+            Scanner scannerSongs = new Scanner(new File("Songs_db.csv"));
+            ArrayList<String[]> allSongs = new ArrayList<>();
+            int c = 50;
+            scannerSongs.nextLine();
+            while (scannerSongs.hasNextLine() && c>0) {
+                c = c-1;
+                String line = scannerSongs.nextLine();
+                String[] columns = line.split(",");
+                String[] songInfo = {columns[0],columns[1],null};
+                allSongs.add(songInfo);
+            }
+            return allSongs;
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public static ArrayList<String[]> secondList(){
+
+        try{
+            Scanner scannerSongs = new Scanner(new File("Recommended_db.csv"));
+            ArrayList<String[]> allSongs = new ArrayList<>();
+            scannerSongs.nextLine();
+            while (scannerSongs.hasNextLine()) {
+                String line = scannerSongs.nextLine();
+                String[] columns = line.split(",");
+                String[] songInfo = {columns[0],columns[1],null};
+                allSongs.add(songInfo);
+            }
+            return allSongs;
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
 }

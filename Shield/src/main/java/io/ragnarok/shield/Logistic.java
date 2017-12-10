@@ -51,7 +51,7 @@ public class Logistic {
         for (int i=0; i<weights.length;i++)  {
             logit += weights[i] * x[i];
         }
-        if (sigmoid(logit)>0.5){
+        if (sigmoid(logit)>0.1){
             return 1;
         }else {
             return 0;
@@ -69,7 +69,7 @@ public class Logistic {
     }
 
     public static List<Instance> readDataSet(String file, String user_name) throws FileNotFoundException {
-        List<Instance> dataset = new ArrayList<Instance>();
+        ArrayList<Instance> dataset = new ArrayList<Instance>();
         Scanner scanner = null;
         try {
             scanner = new Scanner(new File(file));

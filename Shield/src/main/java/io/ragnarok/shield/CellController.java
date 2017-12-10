@@ -51,6 +51,22 @@ public class CellController implements Initializable {
     private void leave(){
         cell.setStyle(" -fx-background-color: transparent;");
     }
+
+    @FXML
+    private void Like(){
+        String songName = titleText.getText();
+        String artistName = artistText.getText();
+        String[] metaData = {songName,artistName};
+        Functions.Like(metaData);
+    }
+
+    @FXML
+    private void disLike(){
+        String songName = titleText.getText();
+        String artistName = artistText.getText();
+        String[] metaData = {songName,artistName};
+        Functions.disLike(metaData);
+    }
     
     @FXML
     public Node getVBox(){

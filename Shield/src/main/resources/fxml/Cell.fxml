@@ -17,7 +17,7 @@
         <Label fx:id="titleText"/>
         <Label fx:id="artistText"/>
         <HBox alignment="center" spacing="15">
-            <Button>
+            <Button onAction="#disLike">
                <graphic>
                 <AnchorPane>
                 <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
@@ -29,7 +29,7 @@
                 </graphic>
             </Button>
             <Button text="+"/>
-            <Button>
+            <Button onAction="#Like">
                <graphic>
                 <AnchorPane>
                 <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
