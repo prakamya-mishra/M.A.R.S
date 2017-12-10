@@ -117,7 +117,7 @@ public class HomeController implements Initializable {
     
     @FXML
     private void refreshReco(ActionEvent event){
-        
+        Functions.recommendRefresh();
     }
     
     @Override
@@ -136,7 +136,7 @@ public class HomeController implements Initializable {
                         show(newValue);
           }
         };
-        
+
         String[] data = {"Pink World","Planet P Project",null};
         ObservableList<String[]> dataobv = FXCollections.observableArrayList();
         dataobv.add(data);

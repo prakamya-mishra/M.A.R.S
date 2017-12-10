@@ -36,7 +36,7 @@ public class Logistic {
             for (int i=0; i<instances.size(); i++) {
                 float[] x = instances.get(i).x;
                 double predicted = classify(x);
-                float label = instances.get(i).label;
+                Float label = instances.get(i).label;
                 for (int j=0; j<weights.length; j++) {
                     weights[j] = weights[j] + rate * (label - predicted) * predicted * (1 - predicted) * x[j];
                 }
@@ -54,7 +54,7 @@ public class Logistic {
         if (sigmoid(logit)>0.5){
             return 1;
         }else {
-            return 1;
+            return 0;
         }
     }
 
@@ -94,7 +94,6 @@ public class Logistic {
             if (scanner != null)
                 scanner.close();
         }
-        dataset.remove(0);
         return dataset;
     }
 

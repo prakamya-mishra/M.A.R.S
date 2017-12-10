@@ -103,7 +103,7 @@ public class Functions {
         try {
             c = c + 1;
             FileWriter writer = new FileWriter("User_db.csv", true);
-            String line = username + "," + password + "," + "0" + ", , , , , , , , , , , ";
+            String line = username + "," + password + "," + "0" + "0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0";
             if (c == 1) {
                 writer.append(line);
             } else {
@@ -229,17 +229,33 @@ public class Functions {
             List<Logistic.Instance> instances = Logistic.readDataSet("User_db.csv",loggedUserName);
             Logistic logistic = new Logistic(8);
             logistic.train(instances);
-            File Recommended_db = new File("Recommended_db.csv");
-            FileWriter Recommended_db_writer = new FileWriter(Recommended_db, true);
+            int classify;
+            FileWriter Recommended_db_writer = new FileWriter("Recommended_db.csv");
             Recommended_db_writer.append("user_name,user_pwd,logged_in,title,artist_name,artist.hottness,duration,familiarity,key,loudness,mode,tempo,time_signature,label");
+            int c = 0;
             while (scannerSongs.hasNextLine()) {
                 String line = scannerSongs.nextLine();
-                String[] columns = line.split(",");
-                float[] x = {(float)Float.parseFloat(columns[2]),(float)Float.parseFloat(columns[3]),(float)Float.parseFloat(columns[4]),(float)Float.parseFloat(columns[5]),(float)Float.parseFloat(columns[6]),(float)Float.parseFloat(columns[7]),(float)Float.parseFloat(columns[8]),(float)Float.parseFloat(columns[9])};
-                Recommended_db_writer.append("\n"+loggedUserName+","+loggedUserPwd+","+logged+","+(float)Float.parseFloat(columns[2])+","+(float)Float.parseFloat(columns[3])+","+(float)Float.parseFloat(columns[4])+","+(float)Float.parseFloat(columns[5])+","+(float)Float.parseFloat(columns[6])+","+(float)Float.parseFloat(columns[7])+","+(float)Float.parseFloat(columns[8])+","+(float)Float.parseFloat(columns[9])+","+logistic.classify(x));
+                c = c + 1;
+                if(c>1) {
+                    String[] columns = line.split(",");
+                    for(int i = 2 ; i < columns.length-1;i++){
+                        if(columns[i].isEmpty()){
+                            columns[i] = "0";
+                        }
+                    }
+                    System.out.println(line);
+                    float[] x = {Float.parseFloat(columns[2]), Float.parseFloat(columns[3]), Float.parseFloat(columns[4]), Float.parseFloat(columns[5]), Float.parseFloat(columns[6]), Float.parseFloat(columns[7]), Float.parseFloat(columns[8]), Float.parseFloat(columns[9])};
+                    classify = logistic.classify(x);
+                    System.out.println(classify);
+                    if (classify == 1) {
+                        System.out.println("\n" + loggedUserName + "," + loggedUserPwd + "," + logged + "," + (float) Float.parseFloat(columns[2]) + "," + (float) Float.parseFloat(columns[3]) + "," + (float) Float.parseFloat(columns[4]) + "," + (float) Float.parseFloat(columns[5]) + "," + (float) Float.parseFloat(columns[6]) + "," + (float) Float.parseFloat(columns[7]) + "," + (float) Float.parseFloat(columns[8]) + "," + (float) Float.parseFloat(columns[9]) + "," + classify);
+                        Recommended_db_writer.append("\n" + loggedUserName + "," + loggedUserPwd + "," + logged + "," + (float) Float.parseFloat(columns[2]) + "," + (float) Float.parseFloat(columns[3]) + "," + (float) Float.parseFloat(columns[4]) + "," + (float) Float.parseFloat(columns[5]) + "," + (float) Float.parseFloat(columns[6]) + "," + (float) Float.parseFloat(columns[7]) + "," + (float) Float.parseFloat(columns[8]) + "," + (float) Float.parseFloat(columns[9]) + "," + classify);
+
+                    }
+                }
             }
-            Recommended_db_writer.close();
             Recommended_db_writer.flush();
+            Recommended_db_writer.close();
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
@@ -269,10 +285,9 @@ public class Functions {
                     break;
                 }
             }
-            File MySongs_db = new File("MySongs_db.csv");
-            FileWriter MySongs_db_writer = new FileWriter(MySongs_db, true);
+            FileWriter MySongs_db_writer = new FileWriter("MySongs_db.csv");
             MySongs_db_writer.append("user_name,user_pwd,logged_in,title,artist_name,artist.hottness,duration,familiarity,key,loudness,mode,tempo,time_signature,label");
-            String newSong = null;
+            String newSong;
             while (scannerSongs.hasNextLine()) {
                 String line = scannerUser.nextLine();
                 String[] columns = line.split(",");
