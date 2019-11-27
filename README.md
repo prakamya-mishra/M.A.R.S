@@ -1,4 +1,4 @@
-# SHIELD
+# MARS (Music app with recommendation system)
 A platform to connect music lovers across the globe!! 
 
 This is a cool Java app to help you realise your music preferences and share it with the world. We use * _fancy concept coming_ * machine learning to help you discover your music tastes.
